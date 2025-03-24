@@ -9,8 +9,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   Animated,
+  Pressable,
 } from 'react-native';
-import { ArrowLeft, List, PaperPlaneTilt } from 'phosphor-react-native';
+import { ArrowLeft, FilePlus, Globe, List, Paperclip, PaperPlaneTilt, PlusCircle } from 'phosphor-react-native';
 import { AppColors, darkTheme, lightTheme } from '../../constants/AppColors';
 import { Picker } from '@react-native-picker/picker';
 import { ApiService } from '../../constants/ApiService';
@@ -68,7 +69,7 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
         const geminiMessage: { text: string; sender: 'user' | 'gemini'; isCode?: boolean } = {
           text: response ?? '...',
           sender: 'gemini',
-          isCode: response ? response.startsWith('```') : undefined, // Simple code detection
+          isCode: response ? response.startsWith('```') : undefined, 
         };
         setMessages((prevMessages) => prevMessages.filter((msg) => !msg.loading).concat(geminiMessage));
       } catch (error) {
@@ -124,7 +125,7 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
             <Picker.Item label="Gemini 2.0 Flash" value="gemini 2.0 flash" />
           </Picker>
 
-           <TouchableOpacity style={styles.arrowContainer} onPress={() => console.log('Home')}>
+           <TouchableOpacity style={styles.burgerContainer} onPress={() => console.log('Home')}>
             <List size={size} weight="duotone" color={iconColor} />
           </TouchableOpacity>
         </View>
@@ -140,9 +141,18 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
               flatListRef.current.scrollToEnd({ animated: true });
             }
           }}
-        />
+        />  
 
         <View style={styles.inputContainer}>
+          <View style={styles.toolBarIcons}>
+            <TouchableOpacity>
+              <Paperclip size={size} weight="duotone" color={iconColor} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Globe size={size} weight="duotone" color={iconColor} />
+            </TouchableOpacity>
+          </View>
+
           <TextInput
             style={styles.input}
             value={userInput}
@@ -171,9 +181,8 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 20,
     paddingVertical: 10,
-    marginHorizontal: 10,
   },
   arrowContainer: {
     padding: 8,
@@ -181,6 +190,14 @@ const styles = StyleSheet.create({
     borderRadius: AppConstants.borderRadius,
     elevation: 5,
     marginRight: 10,
+  },
+  burgerContainer: {
+    position: "absolute",
+    right: 0,
+    padding: 8,
+    backgroundColor: AppColors.backgroundColor,
+    borderRadius: AppConstants.borderRadius,
+    elevation: 5,
   },
   picker: {
     flex: 0.7,
@@ -197,16 +214,29 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     padding: 10,
     borderRadius: AppConstants.borderRadius,
+    borderTopRightRadius: 0,
   },
   geminiMessage: {
     alignSelf: 'flex-start',
     borderRadius: AppConstants.borderRadius,
     backgroundColor: AppColors.backgroundColor,
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderTopLeftRadius: 0,
   },
   messageText: {
     fontSize: 16,
     color: AppColors.secondary,
+  },
+  toolBarIcons: {
+    flexDirection: "row",
+    padding: 5,
+    backgroundColor: AppColors.active,
+    elevation: 5,
+    gap: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: AppConstants.borderRadius
   },
   inputContainer: {
     padding: 5,
@@ -221,6 +251,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: AppConstants.fontSize,
     color: lightTheme.text,
+    paddingHorizontal: 10,
   },
   sendButton: {
     padding: 10,
@@ -230,12 +261,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    padding: 10,
   },
   loadingDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: AppColors.inactive,
+    padding: 3.5,
+    borderRadius: AppConstants.borderRadius,
+    backgroundColor: AppColors.active,
     marginHorizontal: 4,
   },
 });
