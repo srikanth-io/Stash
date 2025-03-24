@@ -9,14 +9,15 @@ import {
   KeyboardAvoidingView,
   Platform,
   Animated,
-  Pressable,
+  Image,
 } from 'react-native';
-import { ArrowLeft, FilePlus, Globe, List, Paperclip, PaperPlaneTilt, PlusCircle } from 'phosphor-react-native';
-import { AppColors, darkTheme, lightTheme } from '../../constants/AppColors';
+import { ArrowLeft, Globe, List, Paperclip, PaperPlaneTilt } from 'phosphor-react-native';
+import { AppColors, lightTheme } from '../../constants/AppColors';
 import { Picker } from '@react-native-picker/picker';
 import { ApiService } from '../../constants/ApiService';
 import { AppConstants } from '../../constants/AppConstants';
 import Markdown from 'react-native-markdown-display';
+import LottieView from 'lottie-react-native';
 
 interface ChatProps {
   focused?: boolean;
@@ -106,6 +107,22 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
     </View>
   );
 
+    const renderEmptyState = () => (
+      <View style={styles.emptyStateContainer}>
+        {/* <Image source={require('./../../../assets/bot.png')} style={styles.emptyImage}/> */}
+        <LottieView
+        autoPlay
+        style={{
+          width: 100,
+          height: 100,
+        }}
+        source={require('../../../assets/bot.json')}
+      />
+        <Text style={styles.emptyStateText}>Start a conversation! Ask me anything.</Text>
+    </View>
+  );
+
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -141,6 +158,7 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
               flatListRef.current.scrollToEnd({ animated: true });
             }
           }}
+           ListEmptyComponent={renderEmptyState}
         />  
 
         <View style={styles.inputContainer}>
@@ -268,6 +286,19 @@ const styles = StyleSheet.create({
     borderRadius: AppConstants.borderRadius,
     backgroundColor: AppColors.active,
     marginHorizontal: 4,
+  },
+  emptyStateContainer: {
+    flex: 1,
+    position: "relative",
+    marginTop: '60%',
+    alignItems: "center",
+    padding: 10,
+    borderRadius: AppConstants.borderRadius
+  },
+  emptyStateText: {
+    fontSize: AppConstants.fontSize,
+    color: lightTheme.text,
+    fontWeight: 'bold'
   },
 });
 
