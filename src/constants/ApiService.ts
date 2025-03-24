@@ -1,4 +1,4 @@
-import { Config } from "../Config"
+import { Config } from "../Config.env"
 
 export const ApiService = async (userInput: string): Promise<undefined> => {
   try {

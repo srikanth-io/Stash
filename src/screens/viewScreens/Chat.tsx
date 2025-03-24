@@ -10,7 +10,7 @@ import {
   Platform,
   Animated,
 } from 'react-native';
-import { ArrowLeft, PaperPlaneTilt } from 'phosphor-react-native';
+import { ArrowLeft, List, PaperPlaneTilt } from 'phosphor-react-native';
 import { AppColors, darkTheme, lightTheme } from '../../constants/AppColors';
 import { Picker } from '@react-native-picker/picker';
 import { ApiService } from '../../constants/ApiService';
@@ -123,6 +123,10 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
           >
             <Picker.Item label="Gemini 2.0 Flash" value="gemini 2.0 flash" />
           </Picker>
+
+           <TouchableOpacity style={styles.arrowContainer} onPress={() => console.log('Home')}>
+            <List size={size} weight="duotone" color={iconColor} />
+          </TouchableOpacity>
         </View>
 
         <FlatList
