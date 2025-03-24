@@ -3,10 +3,11 @@ import { AppScreens } from "../constants/AppScreens";
 import TimeSheet from "../screens/viewScreens/TimeSheet";
 import { StyleSheet, View } from "react-native";
 import { AppColors } from "../constants/AppColors";
-import { Chat, ChatCircleText, ClockClockwise, House, User } from "phosphor-react-native";
+import { ChatCircleText, ClockClockwise, House, User } from "phosphor-react-native";
 import Profile from "../screens/viewScreens/Profile";
 import Home from "../screens/viewScreens/Home";
 import { AppConstants } from "../constants/AppConstants";
+import Chat from "../screens/viewScreens/Chat";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +41,7 @@ export const TabBottomNavigation = () => {
     >
       <Tab.Screen name={AppScreens.HOME} component={Home} />
       <Tab.Screen name={AppScreens.TIMESHEET} component={TimeSheet} />
-      <Tab.Screen name={AppScreens.CHATBOT} component={Chat} />
+      <Tab.Screen name={AppScreens.CHATBOT} component={Chat} options={{tabBarStyle: {display: 'none'}}} />
       <Tab.Screen name={AppScreens.PROFILE} component={Profile} />
     </Tab.Navigator>
   );

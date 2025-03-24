@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TabBottomNavigation } from '../../components/TabBottomNavigation'
+import TabHeaderBar from '../../components/TabHeaderBar'
+import { ApiService } from '../../constants/ApiService';
 
 export default function Dashboard() {
   return (
     <>
-      <TabBottomNavigation/>
-</>
+      <TabBottomNavigation />
+    </>
+    
   )
 }
-
-const styles = StyleSheet.create({})

@@ -15,5 +15,6 @@ export const AppColors = {
   secondary: '#89CFF0',
   accent: '#00BCD4',
   active: '#36454F',
-  inactive: '#A9A9A9'
+  inactive: '#A9A9A9',
+  backgroundColor: 'rgba(255, 255, 255, 1)'
 }
