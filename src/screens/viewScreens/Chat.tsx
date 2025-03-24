@@ -11,7 +11,7 @@ import {
   Animated,
   Image,
 } from 'react-native';
-import { ArrowLeft, Globe, List, Paperclip, PaperPlaneTilt } from 'phosphor-react-native';
+import { ArrowLeft, Globe, List, Paperclip, PaperPlaneTilt, Plus, PlusCircle } from 'phosphor-react-native';
 import { AppColors, lightTheme } from '../../constants/AppColors';
 import { Picker } from '@react-native-picker/picker';
 import { ApiService } from '../../constants/ApiService';
@@ -31,6 +31,7 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
   const iconColor = focused ? AppColors.active : AppColors.inactive;
   const dotAnimations = useRef([new Animated.Value(0), new Animated.Value(0), new Animated.Value(0)]).current;
   const flatListRef = useRef<FlatList<{ text: string; sender: 'user' | 'gemini'; loading?: boolean; isCode?: boolean }>>(null);
+  const [showNewChat, setShowNewChat] = useState(false);
 
   useEffect(() => {
     if (flatListRef.current && messages.length > 0) {
@@ -122,6 +123,10 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
     </View>
   );
 
+  const newChat = () => {
+    renderEmptyState
+  }
+
 
   return (
     <KeyboardAvoidingView
@@ -142,8 +147,8 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
             <Picker.Item label="Gemini 2.0 Flash" value="gemini 2.0 flash" />
           </Picker>
 
-           <TouchableOpacity style={styles.burgerContainer} onPress={() => console.log('Home')}>
-            <List size={size} weight="duotone" color={iconColor} />
+           <TouchableOpacity style={styles.burgerContainer} onPress={() => newChat()}>
+            <PlusCircle size={size} weight="duotone" color={iconColor} />
           </TouchableOpacity>
         </View>
 
@@ -184,6 +189,9 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
           </TouchableOpacity>
         </View>
       </View>
+      {showNewChat && (
+       renderEmptyState()
+      )}
     </KeyboardAvoidingView>
   );
 };
