@@ -1,20 +1,9 @@
-export const lightTheme = {
-  background: '#F5F5F5',
-  surface: '#FFFFFF',
-  text: '#212121',
-};
-
-export const darkTheme = {
-  background: '#121212',
-  surface: '#1E1E1E',
-  text: '#E0E0E0',
-};
-
 export const AppColors = {
-  primary: '#6495ED',
-  secondary: '#89CFF0',
-  accent: '#00BCD4',
+  accent: '#36454f8e',
   active: '#36454F',
   inactive: '#A9A9A9',
-  backgroundColor: 'rgba(255, 255, 255, 1)'
+  textColor: '#E0E0E0',
+  backgroundColor: 'rgba(255, 255, 255, 1)',
+  redbackgroundColor: 'rgba(239, 105, 105, 1)',
+  redColor: '#f91717'
 }

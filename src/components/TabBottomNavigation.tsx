@@ -30,7 +30,7 @@ export const TabBottomNavigation = () => {
           );
           
         },
-        tabBarActiveTintColor: AppColors.primary,
+        tabBarActiveTintColor: AppColors.accent,
         tabBarInactiveTintColor: AppColors.inactive,
         tabBarStyle: styles.tabBarStyle,
         tabBarShowLabel: true,

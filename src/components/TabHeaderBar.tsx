@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { House, MagnifyingGlass, XCircle } from 'phosphor-react-native';
-import { AppColors, lightTheme } from '../constants/AppColors';
+import { AppColors } from '../constants/AppColors';
 import { AppConstants } from '../constants/AppConstants';
 
 interface TabHeaderBarProps {
@@ -59,6 +59,7 @@ export default function TabHeaderBar({ focused, size = 28, }: TabHeaderBarProps)
             <TextInput
               ref={searchInputRef}
               placeholder="Search Something Here"
+              placeholderTextColor={AppColors.accent}
               maxLength={30}
               style={styles.searchInput}
               value={searchText.trim()}
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: AppConstants.fontSize,
-    color: lightTheme.text,
+    color: AppColors.textColor,
   },
   filterContainer: {
     position: "absolute",
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   filterText: {
-    color: lightTheme.text,
+    color: AppColors.textColor,
     fontWeight: 'bold',
     textAlign: 'left',
   },

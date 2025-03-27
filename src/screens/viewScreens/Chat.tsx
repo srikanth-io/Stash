@@ -12,7 +12,7 @@ import {
   Image,
 } from 'react-native';
 import { ArrowLeft, Globe, List, Paperclip, PaperPlaneTilt, Plus, PlusCircle } from 'phosphor-react-native';
-import { AppColors, lightTheme } from '../../constants/AppColors';
+import { AppColors } from "../../constants/AppColors";
 import { Picker } from '@react-native-picker/picker';
 import { ApiService } from '../../constants/ApiService';
 import { AppConstants } from '../../constants/AppConstants';
@@ -181,6 +181,7 @@ const Chat: React.FC<ChatProps> = ({ focused = false, size = 28 }) => {
             value={userInput}
             onChangeText={setUserInput}
             placeholder="Type your message..."
+            placeholderTextColor={AppColors.accent}
             multiline
             numberOfLines={4}
           />
@@ -252,7 +253,7 @@ const styles = StyleSheet.create({
   },
   messageText: {
     fontSize: 16,
-    color: AppColors.secondary,
+    color: AppColors.textColor,
   },
   toolBarIcons: {
     flexDirection: "row",
@@ -276,7 +277,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: AppConstants.fontSize,
-    color: lightTheme.text,
+    color: AppColors.textColor,
     paddingHorizontal: 10,
   },
   sendButton: {
@@ -305,7 +306,7 @@ const styles = StyleSheet.create({
   },
   emptyStateText: {
     fontSize: AppConstants.fontSize,
-    color: lightTheme.text,
+    color: AppColors.accent,
     fontWeight: 'bold'
   },
 });
